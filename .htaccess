@@ -1,0 +1,13 @@
+RewriteEngine On
+
+# Tolak akses langsung ke direktori sensitif
+RewriteRule ^config/.*$    - [F,L]
+RewriteRule ^include/.*$   - [F,L]
+RewriteRule ^mvc/.*$       - [F,L]
+RewriteRule ^logs/.*$      - [F,L]
+RewriteRule ^tmp/.*$       - [F,L]
+
+# Semua request diarahkan ke index.php (Front Controller)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php [QSA,L]
